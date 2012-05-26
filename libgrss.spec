@@ -5,13 +5,12 @@
 #
 Summary:	GObject RSS handling library
 Name:		libgrss
-Version:	0.4.0
+Version:	0.5.0
 Release:	1
 License:	LGPL v3
 Group:		Libraries
 Source0:	http://gtk.mplat.es/libgrss/tarballs/%{name}-%{version}.tar.gz
-# Source0-md5:	c145ce89a8287519e6366ce9c3c15de7
-Patch0:		%{name}-pc.patch
+# Source0-md5:	1a91770f5c5a77eb33f72dc7c33f876d
 URL:		http://live.gnome.org/Libgrss
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.10
@@ -70,7 +69,6 @@ Dokumentacja API biblioteki grss.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -108,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgrss-1.0.so
 %{_includedir}/libgrss
-%{_pkgconfigdir}/libgrss-0.pc
+%{_pkgconfigdir}/libgrss-0.5.pc
 
 %if %{with static_libs}
 %files static
