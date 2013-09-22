@@ -4,38 +4,46 @@
 %bcond_without	static_libs	# don't build static libraries
 #
 Summary:	GObject RSS handling library
+Summary(pl.UTF-8):	Biblioteka GObject do obsługi RSS
 Name:		libgrss
 Version:	0.5.0
 Release:	1
-License:	LGPL v3
+License:	LGPL v3+
 Group:		Libraries
 Source0:	http://gtk.mplat.es/libgrss/tarballs/%{name}-%{version}.tar.gz
 # Source0-md5:	1a91770f5c5a77eb33f72dc7c33f876d
 URL:		http://live.gnome.org/Libgrss
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.10
-BuildRequires:	glib2-devel >= 1:2.22.2
+BuildRequires:	glib2-devel >= 1:2.30.2
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	libsoup-devel >= 2.28.1
+BuildRequires:	libsoup-devel >= 2.36.1
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.7.4
+BuildRequires:	libxml2-devel >= 1:2.7.8
 BuildRequires:	pkgconfig
+Requires:	glib2 >= 1:2.30.2
+Requires:	libsoup >= 2.36.1
+Requires:	libxml2 >= 1:2.7.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 libgrss is a GLib abstraction to handle feeds in RSS, Atom and other
 formats.
 
+%description -l pl.UTF-8
+libgrss to abstrakcja GLiba do obsługi danych w formatach RSS, Atom i
+innych.
+
 %package devel
 Summary:	Header files for grss library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki grss
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.22.2
-Requires:	libsoup-devel >= 2.28.1
-Requires:	libxml2-devel >= 1:2.7.4
+Requires:	glib2-devel >= 1:2.30.2
+Requires:	libsoup-devel >= 2.36.1
+Requires:	libxml2-devel >= 1:2.7.8
 
 %description devel
 Header files for grss library.
@@ -98,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README TODO
+%doc NEWS README
 %attr(755,root,root) %{_libdir}/libgrss-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgrss-1.0.so.0
 
