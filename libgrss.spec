@@ -7,7 +7,7 @@ Summary:	GObject RSS handling library
 Summary(pl.UTF-8):	Biblioteka GObject do obsługi RSS
 Name:		libgrss
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	LGPL v3+
 Group:		Libraries
 Source0:	http://gtk.mplat.es/libgrss/tarballs/%{name}-%{version}.tar.xz
