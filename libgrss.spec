@@ -6,12 +6,12 @@
 Summary:	GObject RSS handling library
 Summary(pl.UTF-8):	Biblioteka GObject do obsługi RSS
 Name:		libgrss
-Version:	0.6.0
-Release:	2
+Version:	0.7.0
+Release:	1
 License:	LGPL v3+
 Group:		Libraries
-Source0:	http://gtk.mplat.es/libgrss/tarballs/%{name}-%{version}.tar.xz
-# Source0-md5:	b9ffb9cf75db33abaa40e3561752623d
+Source0:	https://download.gnome.org/sources/libgrss/0.7/%{name}-%{version}.tar.xz
+# Source0-md5:	7c0ee46a82dc0e9610183fe9ef8c7c1d
 URL:		https://wiki.gnome.org/Projects/Libgrss
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -21,7 +21,6 @@ BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	intltool >= 0.40.6
 BuildRequires:	libsoup-devel >= 2.48.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 1:2.9.2
@@ -84,13 +83,7 @@ Dokumentacja API biblioteki grss.
 %prep
 %setup -q
 
-mkdir po
-touch po/POTFILES.in
-
-#%{__sed} -i -e '/po\/Makefile.in/d' configure.ac
-
 %build
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
@@ -110,9 +103,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-# fix for buggy src/Makefile.am
-%{__mv} $RPM_BUILD_ROOT%{_libdir}/girepository-{0.6,1.0}
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/gir-{0.6,1.0}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -123,25 +113,25 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc NEWS README
-%attr(755,root,root) %{_libdir}/libgrss-0.6.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgrss-0.6.so.0
-%{_libdir}/girepository-1.0/Grss-0.6.typelib
+%attr(755,root,root) %{_libdir}/libgrss.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgrss.so.0
+%{_libdir}/girepository-1.0/Grss-0.7.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgrss-0.6.so
-%{_includedir}/libgrss-0.6
-%{_datadir}/gir-1.0/Grss-0.6.gir
-%{_pkgconfigdir}/libgrss-0.6.pc
+%attr(755,root,root) %{_libdir}/libgrss.so
+%{_includedir}/libgrss
+%{_datadir}/gir-1.0/Grss-0.7.gir
+%{_pkgconfigdir}/libgrss.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgrss-0.6.a
+%{_libdir}/libgrss.a
 %endif
 
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/libgrss-0.6
+%{_gtkdocdir}/libgrss
 %endif
