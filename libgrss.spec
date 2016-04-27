@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	static_libs	# don't build static libraries
-#
+
 Summary:	GObject RSS handling library
 Summary(pl.UTF-8):	Biblioteka GObject do obsługi RSS
 Name:		libgrss
 Version:	0.7.0
-Release:	1
+Release:	2
 License:	LGPL v3+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/libgrss/0.7/%{name}-%{version}.tar.xz
@@ -73,6 +73,9 @@ Summary:	grss library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki grss
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 grss library API documentation.
